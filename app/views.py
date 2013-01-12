@@ -27,6 +27,7 @@ def upload(request):
     if request.is_ajax() or request.method == 'POST':        
         form = VideoForm(request.POST, request.FILES)
         video = Video(file = request.FILES['file'])
+        video.formato = request.POST['formato']
         video.save()
         job = schedule_zencoder_job(video)
         
@@ -82,12 +83,12 @@ def player(request, video_id = 0):
 def schedule_zencoder_job(video_obj):
     zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)
 
-    nome_arquivo = video_obj.file.name.split("/")[-1] + ".mp4" #pega apenas o nome do arquivo e coloca a extensao mp4
+    formato = video_obj.formato
+    nome_arquivo = "%s.%s" % (video_obj.file.name.split("/")[-1], formato)
     output = {}
     output["url"] = "s3://nandotorres/%s" % nome_arquivo 
     output["base_url"] = "s3://nandotorres/"
-    output["format"]   = "mp4"
-    output["video_codec"] = "mpeg4"
+    output["format"]   = formato
     output["public"] = 1
     output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, video_obj.id)) }]
     

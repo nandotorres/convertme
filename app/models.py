@@ -3,6 +3,7 @@ from django.db import models
 
 class Video(models.Model):
     file = models.FileField(upload_to='videos/')
+    formato = models.CharField(max_length = 5, default = 'MOV')
     job_id = models.IntegerField(default=0, null=True, blank=True)
     job_done = models.BooleanField(default=False)
     

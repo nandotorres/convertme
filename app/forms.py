@@ -2,6 +2,5 @@
 from django import forms
 
 class VideoForm(forms.Form):
-    file = forms.FileField(
-        label='Selecione um arquivo'
-    )
+    file = forms.FileField()
+    formato = forms.CharField()
