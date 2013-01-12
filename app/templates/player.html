@@ -22,7 +22,7 @@
 			<div class="form">
 			{% if video.job_done %}
 				<video id="movie" width="" height="" preload controls>
-				   <source id="srcMp4" src="https://s3-sa-east-1.amazonaws.com/nandotorres/{{ video.file.name }}.mp4" />
+				   <source id="srcMp4" src="https://s3-sa-east-1.amazonaws.com/nandotorres/{{ nome_arquivo }}" />
 				   <object id="flowplayer" name="flowplayer" width="350" height="120" data="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" 
 				            type="application/x-shockwave-flash">
 				      <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" />

@@ -72,7 +72,8 @@ def verify(request, video_id = 0):
 
 def player(request, video_id = 0):
     video = Video.objects.get(id = video_id)
-    return TemplateResponse(request, 'player.html', {'video': video})
+    nome_arquivo = video.file.name.split("/")[-1] + ".mp4"
+    return TemplateResponse(request, 'player.html', {'video': video, 'nome_arquivo': nome_arquivo})
     
 """
   Funcao auxiliar para criar o job no Zencoder
