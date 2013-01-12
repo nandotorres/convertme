@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.template.response import TemplateResponse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -31,6 +32,7 @@ def upload(request):
         if job.code == 201:
             feedback["status"] = "201" 
             feedback["job_id"] = job.body['id']
+            feedback["video_id"] = video.id
             video.job_id = job.body['id']
             video.save()
         else:
@@ -53,11 +55,13 @@ def upload(request):
 def schedule_zencoder_job(video_obj):
     zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)
 
-    nome_arquivo = video_obj.file.name.split("/")[-1] + ".wmv" #pega apenas o nome do arquivo e coloca a extensao wmv
+    nome_arquivo = video_obj.file.name.split("/")[-1] + ".mp4" #pega apenas o nome do arquivo e coloca a extensao mp4
     output = {}
     output["url"] = "s3://nandotorres/%s" % nome_arquivo 
     output["base_url"] = "s3://nandotorres/"
-    output["format"]   = "wmv"
+    output["format"]   = "mp4"
+    output["video_codec"] = "mpeg4"
+    output["public"] = 1
     output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, video_obj.id)) }]
     
     job = zen.job.create(settings.SITE_URL + settings.MEDIA_URL + video_obj.file.name, output)
@@ -72,3 +76,11 @@ def notify(request, video_id = 0):
     video.job_done = True
     video.save()
     return HttpResponse(simplejson.dumps({'status': 'ok'}), mimetype="application/json")
+    
+"""
+ Carrega a interface do player para assistir a um video
+"""
+
+def player(request, video_id = 0):
+    video = Video.objects.get(id = video_id)
+    return TemplateResponse(request, 'player.html', {'video': video})

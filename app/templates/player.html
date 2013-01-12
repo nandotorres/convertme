@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convertme - Converta vídeos de .DV para web</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Sevillana' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+	<link href="{{ STATIC_URL }}css/convertme.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+	<div class="container">
+	  <div class="row">
+	    <div class="span12">
+          <div class="header">		
+		   <h1><span class="marrom">convert</span><span class="verde">me</span></h1>
+		   <p class="banner">Selecione um arquivo de vídeo em seu computador e clique em <em>Convert!</em><br /> para convertê-lo para web</p>
+		  </div>
+		</div>
+	  </div>
+	  <div class="row">
+	    <div class="span12">
+			<div class="form">
+			{% if not video.job_done %}
+				<video id="movie" width="" height="" preload controls>
+				   <source id="srcMp4" src="http://nandotorres.s3.amazonaws.com/{{ video.file.name }}.mp4" />
+				   <object id="flowplayer" name="flowplayer" width="350" height="120" data="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" 
+				            type="application/x-shockwave-flash">
+				      <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" />
+				      <param name="allowfullscreen" value="true" />
+				      <param name="flashvars" 
+				    value='config={"clip":"http://domain.com/video.flv"}' />
+				   </object>
+				</video>			    
+			{% else %}
+			<div class="alert alert-block">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <h4>Unnnf!!!!</h4>
+			  A conversão do seu vídeo ainda nao ficou pronta. Talvez ela esteja em andamento e você pode tentar atualizar esta página daqui uns minutos. Talvez seja um erro permanente e você deva tentar converter novamente seu vídeo.
+			</div>
+			{% endif %}
+		    </div>
+		</div>
+	  </div>
+	</div>
+	
+  </body>
+  
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.form.js"></script>
+  <script src="{{ STATIC_URL }}js/convertme.js"></script>
+
+</html>
