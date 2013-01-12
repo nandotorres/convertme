@@ -71,4 +71,4 @@ def notify(request, video_id = 0):
     video = Video.objects.get(id = video_id)
     video.job_done = True
     video.save()
-    return HttpResponse(simplejson.dumps({'status': get_absolute_url()}), mimetype="application/json")
+    return HttpResponse(simplejson.dumps({'status': 'ok'}), mimetype="application/json")

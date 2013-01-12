@@ -4,4 +4,4 @@
 local_settings.py
 .DS_Store
 app/media/videos/*
-app/database/convertme.db
+*.db
