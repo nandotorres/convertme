@@ -10,13 +10,12 @@ ADMINS = (
 MANAGERS = ADMINS
 
 APP_URL = '/'
-
-APP_ROOT = '/app/'
+APP_ROOT = '/app/convertme/app'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': APP_ROOT + 'convertme/app/database/convertme.db'
+        'NAME': APP_ROOT + '/database/convertme.db'
     }
 }
 
@@ -28,11 +27,11 @@ SITE_ID = 1
 
 SITE_URL = 'http://ec2-67-202-24-179.compute-1.amazonaws.com'
 
-MEDIA_ROOT = APP_ROOT + 'convertme/app/media/'
+MEDIA_ROOT = APP_ROOT + '/media/'
 
 MEDIA_URL = APP_URL + 'media/'
 
-STATIC_ROOT = APP_ROOT + 'convertme/app/assets/'
+STATIC_ROOT = APP_ROOT + '/assets/'
 
 STATIC_URL = APP_URL + 'assets/'
 
@@ -42,9 +41,9 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ("css", APP_ROOT + "convertme/app/assets/css"),
-    ("img", APP_ROOT + "convertme/app/assets/img"),
-    ("js", APP_ROOT + "convertme/app/assets/js"),
+    ("css", APP_ROOT + "/assets/css"),
+    ("img", APP_ROOT + "/assets/img"),
+    ("js", APP_ROOT + "/assets/js"),
 )
 
 SECRET_KEY = '+-3xl4dj)r&amp;wf_#!9=dp1i2553a!hztx1yyi10v)n(di1hv-sd'
@@ -72,7 +71,7 @@ ROOT_URLCONF = 'convertme.urls'
 WSGI_APPLICATION = 'convertme.wsgi.application'
 
 TEMPLATE_DIRS = (
-    APP_ROOT + 'convertme/app/templates/'
+    APP_ROOT + '/templates/'
 )
 
 INSTALLED_APPS = (
