@@ -1,0 +1,22 @@
+body {background: url(../img/dust.png);}
+div.header {
+ text-align: center; 
+ margin: 20px 0;
+}
+div.header h1 {
+	font-family: 'Courgette', cursive;
+    font-size: 130px;	
+	line-height: 130px;
+	text-shadow: 1px 1px 1px cadetblue;
+}
+div.header p {
+	font-family: 'Sevillana', cursive;
+	font-size: 24px;
+	line-height: 24px;
+	text-shadow: 1px 0px 1px ghostwhite;	
+}
+.marrom {color: brown;}
+.verde {color: #66cc00;}
+input[type=text].input-large {height: 34px; width: 450px !important;}
+div.form{text-align: center; width: 100%; margin: 20px 0;}
+

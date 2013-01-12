@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convertme - Converta on-line, vídeos entre vários formatos</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Sevillana' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+	<link href="{{ STATIC_URL }}css/convertme.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+	<div class="container">
+	  <div class="row">
+	    <div class="span12">
+          <div class="header">		
+		   <h1><span class="marrom">convert</span><span class="verde">me</span></h1>
+		   <p class="banner">Selecione um arquivo de vídeo em seu computador e clique em <em>Convert!</em> para converter para o formato desejado</p>
+		  </div>
+		</div>
+	  </div>
+	  <div class="row">
+	    <div class="span12">
+          <div class="form">		
+		    <form class="form-inline" action="{% url upload %}" method="post" enctype="multipart/form-data">              
+		      <div class="input-append">
+			    <input id="lefile" type="file" style="display:none">
+                <input class="input-large" id="appendedInputButton" type="text">
+                <button class="btn btn-large" type="button" onclick="$('input[id=lefile]').click();"><i class="icon-folder-open"></i> ... </button>
+				<button class="btn btn-large btn-primary" type="button"><i class="icon-ok-sign"></i> Convert!</button>
+              </div>
+            </form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+	$('input[id=lefile]').change(function() {
+	  $('#appendedInputButton').val($(this).val());
+	});
+  </script>
+</html>
