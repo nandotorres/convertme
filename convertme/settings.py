@@ -22,13 +22,19 @@ LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
 
-MEDIA_ROOT = '/app/convertme/app/upload/'
+SITE_URL = 'http://convertme.nandotorres.com/'
 
-MEDIA_URL = '/upload/'
+APP_URL = '/'
 
-STATIC_ROOT = '/app/convertme/app/assets/'
+APP_ROOT = '/app/'
 
-STATIC_URL = '/assets/'
+MEDIA_ROOT = APP_ROOT + 'convertme/app/upload/'
+
+MEDIA_URL = APP_URL + 'upload/'
+
+STATIC_ROOT = APP_ROOT + 'convertme/app/assets/'
+
+STATIC_URL = APP_URL + 'assets/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -36,9 +42,9 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ("css", "/app/convertme/app/assets/css"),
-    ("img", "/app/convertme/app/assets/img"),
-    ("js", "/app/convertme/app/assets/js"),
+    ("css", APP_ROOT + "convertme/app/assets/css"),
+    ("img", APP_ROOT + "convertme/app/assets/img"),
+    ("js", APP_ROOT + "convertme/app/assets/js"),
 )
 
 SECRET_KEY = '+-3xl4dj)r&amp;wf_#!9=dp1i2553a!hztx1yyi10v)n(di1hv-sd'
@@ -66,7 +72,7 @@ ROOT_URLCONF = 'convertme.urls'
 WSGI_APPLICATION = 'convertme.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/app/convertme/app/templates/'
+    APP_ROOT + 'convertme/app/templates/'
 )
 
 INSTALLED_APPS = (
