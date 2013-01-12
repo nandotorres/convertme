@@ -72,9 +72,8 @@ def verify(request, video_id = 0):
 """
 
 def player(request, video_id = 0):
-    video = Video.objects.get(id = video_id)
-    nome_arquivo = "%s.%s" % (video.file.name.split("/")[-1], video.formato) 
-    return TemplateResponse(request, 'player.html', {'video': video, 'nome_arquivo': nome_arquivo})
+    video = Video.objects.get(id = video_id) 
+    return TemplateResponse(request, 'player.html', {'video': video, 'nome_arquivo': gerar_nome_arquivo(video) })
     
 """
   Funcao auxiliar para criar o job no Zencoder
@@ -83,10 +82,8 @@ def player(request, video_id = 0):
 def schedule_zencoder_job(video_obj):
     zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)
 
-    formato = video_obj.formato
-    nome_arquivo = "%s.%s" % (video_obj.file.name.split("/")[-1], formato)
     output = {}
-    output["url"] = "s3://nandotorres/%s" % nome_arquivo 
+    output["url"] = "s3://nandotorres/%s" % gerar_nome_arquivo(video_obj) 
     output["base_url"] = "s3://nandotorres/"
     output["format"]   = formato
     output["public"] = 1
@@ -95,3 +92,11 @@ def schedule_zencoder_job(video_obj):
     job = zen.job.create(settings.SITE_URL + settings.MEDIA_URL + video_obj.file.name, output)
     
     return job
+    
+"""
+ Funcao auxliar para gerar o nome do arquivo a ser reproduzido
+ recebe o nome do arquivo enviado e adiciona a extensao desejada
+"""
+
+def gerar_nome_arquivo(video_obj):
+    return "%s.%s" % (video_obj.file.name.split("/")[-1], video_obj.formato)
