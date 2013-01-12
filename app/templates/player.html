@@ -33,6 +33,11 @@
 				  A conversão do seu vídeo ainda nao ficou pronta. Talvez ela esteja em andamento e você pode tentar atualizar esta página daqui uns minutos. Talvez seja um erro permanente e você deva tentar converter novamente seu vídeo.
 				</div>
 			{% endif %}
+			
+			<div class="alert alert-info" id="banner-arquivo-original">
+			  Arquivo original: <b><a href="{{ MEDIA_URL }}{{ video.file.name }}">{{ MEDIA_URL }}{{ video.file.name }}</a></b>
+			</div>
+			
 		    </div>
 		</div>
 	  </div>
