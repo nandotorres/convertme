@@ -20,7 +20,7 @@
 	  <div class="row">
 	    <div class="span12">
 			<div class="form">
-			{% if not video.job_done %}
+			{% if video.job_done %}
 				<video id="movie" width="" height="" preload controls>
 				   <source id="srcMp4" src="http://nandotorres.s3.amazonaws.com/{{ video.file.name }}.mp4" />
 				   <object id="flowplayer" name="flowplayer" width="350" height="120" data="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" 

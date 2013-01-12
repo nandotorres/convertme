@@ -29,6 +29,8 @@ $(function() {
 	var options = { 
 	    success:    function(b) { 
 	        $('div.progress-bar').fadeOut();
+			$('div.job-bar').fadeIn();
+			verificaJob(b.video_id);
 	    },
 		error:      function() {
 			$('div.progress-bar').fadeOut();
@@ -40,4 +42,22 @@ $(function() {
 	}; 
  
 	$('#form-video').ajaxForm(options);
+	
 });
+
+//Verifica se o status de um job estah pronto.
+//Caso esteja, redireciona o usuario para o video
+var verificaJob = function(video_id) {
+ 	
+	setInterval(function() {
+		$.ajax({
+		  url: "/verify/" + video_id,
+		  context: document.body
+		}).done(function(b) {
+			if(b.job_done === true) {
+				location.href = "/player/" + video_id;
+			} 
+		});
+	}, 3000);
+	
+}

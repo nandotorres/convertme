@@ -49,6 +49,30 @@ def upload(request):
     return HttpResponse(simplejson.dumps(feedback), mimetype="application/json")
     
 """
+ Acao para que o zencoder possa notificar que um job foi concluido
+"""
+def notify(request, video_id = 0):
+    video = Video.objects.get(id = video_id)
+    video.job_done = True
+    video.save()
+    return HttpResponse(simplejson.dumps({'status': 'ok'}), mimetype="application/json")
+
+"""
+ Acao para que o applicativo possa verificar se um video esta' com status job_done = 1
+"""
+def verify(request, video_id = 0):
+    video = Video.objects.get(id = video_id)
+    return HttpResponse(simplejson.dumps({'job_done': video.job_done}), mimetype="application/json")
+        
+"""
+ Carrega a interface do player para assistir a um video
+"""
+
+def player(request, video_id = 0):
+    video = Video.objects.get(id = video_id)
+    return TemplateResponse(request, 'player.html', {'video': video})
+    
+"""
   Funcao auxiliar para criar o job no Zencoder
   Mover depois para dentro de um local mais apropriado
 """    
@@ -67,20 +91,3 @@ def schedule_zencoder_job(video_obj):
     job = zen.job.create(settings.SITE_URL + settings.MEDIA_URL + video_obj.file.name, output)
     
     return job
-    
-"""
- Acao para que o zencoder possa notificar que um job foi concluido
-"""
-def notify(request, video_id = 0):
-    video = Video.objects.get(id = video_id)
-    video.job_done = True
-    video.save()
-    return HttpResponse(simplejson.dumps({'status': 'ok'}), mimetype="application/json")
-    
-"""
- Carrega a interface do player para assistir a um video
-"""
-
-def player(request, video_id = 0):
-    video = Video.objects.get(id = video_id)
-    return TemplateResponse(request, 'player.html', {'video': video})
