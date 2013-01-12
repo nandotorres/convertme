@@ -73,7 +73,7 @@ def verify(request, video_id = 0):
 
 def player(request, video_id = 0):
     video = Video.objects.get(id = video_id)
-    nome_arquivo = video.file.name.split("/")[-1] + ".mp4"
+    nome_arquivo = "%s.%s" % (video.file.name.split("/")[-1], formato) 
     return TemplateResponse(request, 'player.html', {'video': video, 'nome_arquivo': nome_arquivo})
     
 """
