@@ -39,5 +39,5 @@ $(function() {
 		}
 	}; 
  
-	//$('#form-video').ajaxForm(options);
+	$('#form-video').ajaxForm(options);
 });
