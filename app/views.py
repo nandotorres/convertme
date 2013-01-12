@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
@@ -51,6 +52,7 @@ def upload(request):
 """
  Acao para que o zencoder possa notificar que um job foi concluido
 """
+@csrf_exempt
 def notify(request, video_id = 0):
     video = Video.objects.get(id = video_id)
     video.job_done = True
