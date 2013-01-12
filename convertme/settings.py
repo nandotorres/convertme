@@ -9,10 +9,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+APP_URL = '/'
+
+APP_ROOT = '/app/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/app/convertme/app/database/convertme.db'
+        'NAME': APP_ROOT + 'convertme/app/database/convertme.db'
     }
 }
 
@@ -22,15 +26,11 @@ LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
 
-SITE_URL = 'http://convertme.nandotorres.com/'
+SITE_URL = 'http://ec2-67-202-24-179.compute-1.amazonaws.com'
 
-APP_URL = '/'
+MEDIA_ROOT = APP_ROOT + 'convertme/app/media/'
 
-APP_ROOT = '/app/'
-
-MEDIA_ROOT = APP_ROOT + 'convertme/app/upload/'
-
-MEDIA_URL = APP_URL + 'upload/'
+MEDIA_URL = APP_URL + 'media/'
 
 STATIC_ROOT = APP_ROOT + 'convertme/app/assets/'
 
