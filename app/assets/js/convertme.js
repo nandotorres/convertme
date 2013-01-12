@@ -34,6 +34,8 @@ $(function() {
 	    },
 		error:      function() {
 			$('div.progress-bar').fadeOut();
+			$('div#feedback').fadeIn();
+			$('#form-video')[0].reset();
 		},
 		beforeSubmit: function() {
 			$('div.progress-bar').fadeIn();

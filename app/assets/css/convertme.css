@@ -21,4 +21,5 @@ input[type=text].input-large {height: 34px; width: 450px !important;}
 div.form{text-align: center; width: 100%; margin: 20px 0;}
 div.progress-bar {width: 665px; margin: auto; display: none;}
 div.job-bar {width: 665px; margin: auto; display: none;}
+div#feedback {display: none;}
 

@@ -24,7 +24,7 @@
 		      <div class="input-append">
 				{% csrf_token %}
 			    <input id="file" type="file" name="file" style="display:none" />
-                <input class="input-large" id="fake-file-input" type="text" placeholder="Escolha um arquivo de video..." />
+                <input class="input-large" id="fake-file-input" type="text" readonly="readonly" placeholder="Escolha um arquivo de video..." />
                 <button class="btn btn-large" id="btn-chose-file" type="button"><i class="icon-folder-open"></i> ... </button>
 				<button class="btn btn-large btn-primary" id="btn-convert" type="button" disabled="disabled"><i class="icon-ok-sign"></i> Convert!</button>
               </div>
@@ -32,7 +32,7 @@
 			  <br />
 			  
 			  <label class="checkbox inline">
-			    <input type="radio" name="formato" id="inlineCheckbox1" value="mov"> MOV
+			    <input type="radio" name="formato" id="inlineCheckbox1" value="mov" checked="checked"> MOV
 			  </label>
 			  <label class="checkbox inline">
 			    <input type="radio" name="formato" id="inlineCheckbox2" value="mp4"> MP4
@@ -52,6 +52,11 @@
 			    <div class="bar bar-warning" style="width: 100%;">Aguardando a conversão...</div>
 			  </div>
 		  </div>
+		  <div class="alert alert-block" id="feedback">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <h4>Unf!!!</h4>
+			  <p>Houve algum problema ao processar seu vídeo. Talvez você não tenha enviado um arquivo compatível.</p>
+	      </div>
 		</div>
 	  </div>
 	</div>
