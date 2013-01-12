@@ -20,12 +20,13 @@
 	  <div class="row">
 	    <div class="span12">
           <div class="form">		
-		    <form class="form-inline" action="{% url upload %}" method="post" enctype="multipart/form-data">              
+		    <form class="form-inline" id="form-video" action="{% url upload %}" method="post" enctype="multipart/form-data">              
 		      <div class="input-append">
-			    <input id="lefile" type="file" style="display:none">
-                <input class="input-large" id="appendedInputButton" type="text">
-                <button class="btn btn-large" type="button" onclick="$('input[id=lefile]').click();"><i class="icon-folder-open"></i> ... </button>
-				<button class="btn btn-large btn-primary" type="button"><i class="icon-ok-sign"></i> Convert!</button>
+				{% csrf_token %}
+			    <input id="file" type="file" name="file" style="display:none">
+                <input class="input-large" id="fake-file-input" type="text">
+                <button class="btn btn-large" id="btn-chose-file" type="button"><i class="icon-folder-open"></i> ... </button>
+				<button class="btn btn-large btn-primary" id="btn-convert" type="button"><i class="icon-ok-sign"></i> Convert!</button>
               </div>
             </form>
 		  </div>
@@ -37,8 +38,17 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
   <script type="text/javascript">
-	$('input[id=lefile]').change(function() {
-	  $('#appendedInputButton').val($(this).val());
+  
+  	$('#btn-chose-file').click(function() {
+  		$('input[id=file]').click();
+  	});
+	
+	$('input[id=file]').change(function() {
+	  $('#fake-file-input').val($(this).val());
 	});
+	
+	$('#btn-convert').click(function() {
+		$('#form-video').submit();
+	})
   </script>
 </html>

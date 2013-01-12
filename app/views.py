@@ -10,11 +10,10 @@ from app.forms import VideoForm
 def upload(request):
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES)
-        if form.is_valid():
-            video = Document(file = request.FILES['file'])
-            video.save()
 
-            return HttpResponseRedirect(reverse('app.views.upload'))
+        video = Video(file = request.FILES['file'])
+        video.save()
+        return HttpResponseRedirect(reverse('app.views.upload'))
     else:
         form = VideoForm()
 

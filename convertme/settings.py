@@ -22,9 +22,9 @@ LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
 
-MEDIA_ROOT = '/app/convertme/app/videos/'
+MEDIA_ROOT = '/app/convertme/app/upload/'
 
-MEDIA_URL = '/videos/'
+MEDIA_URL = '/upload/'
 
 STATIC_ROOT = '/app/convertme/app/assets/'
 
