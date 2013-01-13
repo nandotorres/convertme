@@ -1,71 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Convertme - Converta vídeos de .DV para web</title>
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href='http://fonts.googleapis.com/css?family=Sevillana' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
-	<link href="{{ STATIC_URL }}css/convertme.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-	<div class="container">
-	  <div class="row">
-	    <div class="span12">
-          <div class="header">		
-		   <h1><span class="marrom">convert</span><span class="verde">me</span></h1>
-		   <p class="banner">Selecione um arquivo de vídeo em seu computador e clique em <em>Convert!</em><br /> para convertê-lo para <em>web</em></p>
-		  </div>
-		</div>
-	  </div>
-	  <div class="row">
-	    <div class="span12">
-          <div class="form">		
-		    <form class="form-inline" id="form-video" action="{% url upload %}" method="post" enctype="multipart/form-data">              
-		      <div class="input-append">
-				{% csrf_token %}
-			    <input id="file" type="file" name="file" style="display:none" />
-                <input class="input-large" id="fake-file-input" type="text" readonly="readonly" placeholder="Escolha um arquivo de video..." />
-                <button class="btn btn-large" id="btn-chose-file" type="button"><i class="icon-folder-open"></i> ... </button>
-				<button class="btn btn-large btn-primary" id="btn-convert" type="button" disabled="disabled"><i class="icon-ok-sign"></i> Convert!</button>
-              </div>
+{% extends "base.html" %}
+
+{% block header %}
+	<h1><span class="marrom">convert</span><span class="verde">me</span></h1>
+	<p class="banner">Selecione um arquivo de vídeo em seu computador e clique em <em>Convert!</em><br /> para convertê-lo para <em>web</em></p>			  
+{% endblock %}	
+
+{% block conteudo %}
+	<div class="form">		
+	  <form class="form-inline" id="form-video" action="{% url upload %}" method="post" enctype="multipart/form-data">              
+	    <div class="input-append">
+		{% csrf_token %}
+	    <input id="file" type="file" name="file" style="display:none" />
+	      <input class="input-large" id="fake-file-input" type="text" readonly="readonly" placeholder="Escolha um arquivo de video..." />
+	      <button class="btn btn-large" id="btn-chose-file" type="button"><i class="icon-folder-open"></i> ... </button>
+		<button class="btn btn-large btn-primary" id="btn-convert" type="button" disabled="disabled"><i class="icon-ok-sign"></i> Convert!</button>
+	    </div>
 			  
-			  <br />
+	  <br />
 			  
-			  <label class="checkbox inline">
-			    <input type="radio" name="formato" id="inlineCheckbox1" value="webm" checked="checked"> WEBM
-			  </label>
-			  <label class="checkbox inline">
-			    <input type="radio" name="formato" id="inlineCheckbox2" value="mp4"> MP4
-			  </label>
-			  <label class="checkbox inline">
-			    <input type="radio" name="formato" id="inlineCheckbox3" value="ogg"> OGG
-			  </label>
-            </form>
-		  </div>
-		  <div class="progress-bar">
-			  <div class="progress progress-striped active">
-			    <div class="bar" style="width: 100%;">Enviando o vídeo...</div>
-			  </div>
-		  </div>
-		  <div class="job-bar">
-			  <div class="progress progress-striped active">
-			    <div class="bar bar-warning" style="width: 100%;">Aguardando a conversão...</div>
-			  </div>
-		  </div>
-		  <div class="alert alert-block" id="feedback">
-			  <button type="button" class="close" data-dismiss="alert">&times;</button>
-			  <h4>Unf!!!</h4>
-			  <p>Houve algum problema ao processar seu vídeo. Talvez você não tenha enviado um arquivo compatível.</p>
-	      </div>
-		</div>
+	  <label class="checkbox inline">
+	    <input type="radio" name="formato" id="inlineCheckbox1" value="webm" checked="checked"> WEBM
+	  </label>
+	  <label class="checkbox inline">
+	    <input type="radio" name="formato" id="inlineCheckbox2" value="mp4"> MP4
+	  </label>
+	  <label class="checkbox inline">
+	    <input type="radio" name="formato" id="inlineCheckbox3" value="ogg"> OGG
+	  </label>
+	  </form>
+	</div>
+	<div class="progress-bar">
+	  <div class="progress progress-striped active">
+	    <div class="bar" style="width: 100%;">Enviando o vídeo...</div>
 	  </div>
 	</div>
-	
-  </body>
-  
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-  <script src="{{ STATIC_URL }}js/jquery.form.js"></script>
-  <script src="{{ STATIC_URL }}js/convertme.js"></script>
-
-</html>
+	<div class="job-bar">
+	  <div class="progress progress-striped active">
+	    <div class="bar bar-warning" style="width: 100%;">Aguardando a conversão...</div>
+	  </div>
+	</div>
+	<div class="alert alert-block" id="feedback">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <h4>Unf!!!</h4>
+	  <p>Houve algum problema ao processar seu vídeo. Talvez você não tenha enviado um arquivo compatível.</p>
+	</div>			  
+{% endblock %}

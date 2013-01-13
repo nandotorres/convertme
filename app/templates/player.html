@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Convertme - Converta vídeos de .DV para web</title>
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href='http://fonts.googleapis.com/css?family=Sevillana' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
-	<link href="{{ STATIC_URL }}css/skin/playful.css" rel="stylesheet" media="screen">
-	<link href="{{ STATIC_URL }}css/convertme.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-	<div class="container">
-	  <div class="row">
-	    <div class="span12">
-          <div class="header">		
+{% extends "base.html" %}
+
+{% block header %}		
 		   <h1><span class="marrom">convert</span><span class="verde">me</span></h1>
 		   <p class="banner">Obrigado! O vídeo abaixo foi convertido para você. Caso não seja iniciado, tente recarregar a página.</p>
-		  </div>
-		</div>
-	  </div>
-	  <div class="row">
-	    <div class="span12">
+{% endblock %}	
+
+{% block conteudo %}	
 			<div class="form">
 			{% if video.job_done %}
 				<div class="flowplayer" data-swf="{{ STATIC_URL }}css/flowplayer.swf" data-ratio="0.417">
@@ -39,17 +25,5 @@
 			  Arquivo original: <b><a href="{{ MEDIA_URL }}{{ video.file.name }}">{{ MEDIA_URL }}{{ video.file.name }}</a></b>
 			</div>
 			
-		    </div>
-		</div>
-	  </div>
-	</div>
-	
-  </body>
-  
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="{{ STATIC_URL }}js/flowplayer.min.js"></script>
-  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-  <script src="{{ STATIC_URL }}js/jquery.form.js"></script>
-  <script src="{{ STATIC_URL }}js/convertme.js"></script>
-
-</html>
+		  </div>
+{% endblock %}

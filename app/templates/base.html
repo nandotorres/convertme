@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convertme - Converta vídeos de .DV para web</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Sevillana' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+	<link href="{{ STATIC_URL }}css/skin/playful.css" rel="stylesheet" media="screen">
+	<link href="{{ STATIC_URL }}css/convertme.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+	<div class="container">
+	  <div class="row">
+	    <div class="span12">
+          <div class="header">
+			  {% block header %}
+			  
+			  {% endblock %}	
+		  </div>
+  		</div>
+  	  </div>
+  	  <div class="row">
+  	    <div class="span12">
+			  {% block conteudo %}
+			  
+			  {% endblock %}
+		</div>
+	  </div>
+	</div>
+	
+  </body>
+  
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="{{ STATIC_URL }}js/flowplayer.min.js"></script>
+  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.form.js"></script>
+  <script src="{{ STATIC_URL }}js/convertme.js"></script>
+
+
+</html>
