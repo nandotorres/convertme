@@ -29,7 +29,7 @@ def upload(request):
         video = Video(file = request.FILES['file'])
         video.formato = request.POST['formato']
         video.save()
-        job = schedule_zencoder_job(video)
+        job = video.schedule_zencoder_job()
         
         if job.code == 201:
             feedback["status"] = "201" 
@@ -74,24 +74,6 @@ def verify(request, video_id = 0):
 def player(request, video_id = 0):
     video = Video.objects.get(id = video_id) 
     return TemplateResponse(request, 'player.html', {'video': video, 'nome_arquivo': gerar_nome_arquivo(video) })
-    
-"""
-  Funcao auxiliar para criar o job no Zencoder
-  Mover depois para dentro de um local mais apropriado
-"""    
-def schedule_zencoder_job(video_obj):
-    zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)
-
-    output = {}
-    output["url"] = "s3://nandotorres/%s" % gerar_nome_arquivo(video_obj) 
-    output["base_url"] = "s3://nandotorres/"
-    output["format"]   = video_obj.formato
-    output["public"] = 1
-    output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, video_obj.id)) }]
-    
-    job = zen.job.create(settings.SITE_URL + settings.MEDIA_URL + video_obj.file.name, output)
-    
-    return job
     
 """
  Funcao auxliar para gerar o nome do arquivo a ser reproduzido
