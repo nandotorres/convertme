@@ -4,13 +4,13 @@ div.header {
  margin: 20px 0;
 }
 div.header h1 {
-	font-family: 'Courgette', cursive;
+	font-family: 'Cookie', cursive;
     font-size: 130px;	
 	line-height: 130px;
 	text-shadow: 1px 1px 1px cadetblue;
 }
 div.header p {
-	font-family: 'Sevillana', cursive;
+	font-family: 'Poiret One', cursive;
 	font-size: 24px;
 	line-height: 24px;
 	text-shadow: 1px 0px 1px ghostwhite;	

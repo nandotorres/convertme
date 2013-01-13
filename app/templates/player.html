@@ -8,7 +8,7 @@
 {% block conteudo %}	
 			<div class="form">
 			{% if video.job_done %}
-				<div class="flowplayer" data-swf="{{ STATIC_URL }}css/flowplayer.swf" data-ratio="0.417">
+				<div class="flowplayer" id="player" data-swf="{{ STATIC_URL }}css/flowplayer.swf" data-ratio="0.417">
 				   <video preload="none">
 				      <source src="https://s3-sa-east-1.amazonaws.com/nandotorres/{{ nome_arquivo }}" type='video/{{ video.formato }}'>
 				   </video>

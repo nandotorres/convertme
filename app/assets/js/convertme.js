@@ -45,9 +45,6 @@ $(function() {
  
 	$('#form-video').ajaxForm(options);
 	
-	//Cofigura o video player
-	$(".player").flowplayer({ swf: "/swf/flowplayer-.swf" });
-	
 });
 
 //Verifica se o status de um job estah pronto.
