@@ -1,0 +1,29 @@
+== Convertme
+
+Dinâmica desenvolvida para o processo de seleção em Analista de Desenvolvimento na SambaTech.
+
+O desafio consiste em:
+
+- Desenvolver uma aplicação Web que permita a um usuário enviar um vídeo em formato não compatível com webplayers
+- Realizar a conversão desse vídeo para um formato compatível com a web
+- Configurar um servidor para a implantação dessa aplicação em algum serviço de Cloud (Amazon, Rackspace, VPC, etc.)
+- Utilizar Java ou Python como linguagem base, tendo liberdade de framework
+
+== Entregas
+
+- Endereço URL da aplicação funcionando
+- Endereço de um repositório público no GitHub contendo todo o código fonte
+
+== Recursos
+
+- Utilizar a API Resful do Zencoder para realizar os serviços de conversão dos vídeos
+
+== Stack utilizado para realizar o desafio
+
+- Linguagem Python sob framework Django
+- Cloud server Amazon EC2 instância micro
+- API Zencoder versão test
+- GitHub
+- Twitter Bootstrap para decoração da UI (HTML5 + CSS)
+- Google fonts
+- Flowplayer para exibir o vídeo convertido
