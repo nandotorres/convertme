@@ -63,6 +63,6 @@ var verificaJob = function(video_id) {
 				location.href = "/player/" + video_id;
 			} 
 		});
-	}, 3000);
+	}, 5000);
 	
 }
