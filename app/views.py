@@ -85,7 +85,7 @@ def schedule_zencoder_job(video_obj):
     output = {}
     output["url"] = "s3://nandotorres/%s" % gerar_nome_arquivo(video_obj) 
     output["base_url"] = "s3://nandotorres/"
-    output["format"]   = formato
+    output["format"]   = video_obj.formato
     output["public"] = 1
     output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, video_obj.id)) }]
     
