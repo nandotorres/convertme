@@ -10,8 +10,7 @@ class Video(models.Model):
     job_done = models.BooleanField(default=False)
     
     """
-      Funcao auxiliar para criar o job no Zencoder
-      Mover depois para dentro de um local mais apropriado
+      Metodo para criar um job de conversao no zencoder
     """    
     def schedule_zencoder_job(self):
         zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)

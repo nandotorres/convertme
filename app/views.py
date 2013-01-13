@@ -9,8 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
-from zencoder import Zencoder
-
 from app.models import Video
 from app.forms import VideoForm
 
