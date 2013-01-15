@@ -35,10 +35,12 @@
   </body>
   
   <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+  {% load compress %}
+  {% compress js %}
 	  <script src="{{ STATIC_URL }}js/flowplayer.min.js"></script>
 	  <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 	  <script src="{{ STATIC_URL }}js/jquery.form.js"></script>
 	  <script src="{{ STATIC_URL }}js/convertme.js"></script>
+  {% endcompress %}
 
 </html>
