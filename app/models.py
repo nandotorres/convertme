@@ -34,7 +34,7 @@ class Video(models.Model):
         output["public"] = 1
         output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, self.id)) }]
     
-        job = zen.job.create("s3://nandotorres/videos/inputs/" + self.file.name, output)
+        job = zen.job.create("s3://nandotorres/videos/" + self.file.name, output)
     
         return job
         
