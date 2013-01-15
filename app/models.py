@@ -2,12 +2,24 @@
 from django.conf import settings
 from django.db import models
 from zencoder import Zencoder
+import boto
 
 class Video(models.Model):
-    file = models.FileField(upload_to='videos/')
+    file = models.FileField(upload_to='inputs/')
     formato = models.CharField(max_length = 5, default = 'webm')
     job_id = models.IntegerField(default=0, null=True, blank=True)
     job_done = models.BooleanField(default=False)
+    
+    def save(self, *args, **kwargs):
+         super(Video, self).save(*args, **kwargs)
+         if self.file:
+             conn = boto.s3.connection.S3Connection(
+                                 settings.AWS_ACCESS_KEY_ID,
+                                 settings.AWS_SECRET_ACCESS_KEY)
+             bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+             k = boto.s3.key.Key(bucket)
+             k.key = '/videos/' + self.file.name
+             k.set_acl('public-read')
     
     """
       Metodo para criar um job de conversao no zencoder
@@ -22,7 +34,7 @@ class Video(models.Model):
         output["public"] = 1
         output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, self.id)) }]
     
-        job = zen.job.create(settings.SITE_URL + settings.MEDIA_URL + self.file.name, output)
+        job = zen.job.create("s3://nandotorres/videos/inputs/" + self.file.name, output)
     
         return job
         

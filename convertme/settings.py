@@ -81,12 +81,18 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'app'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+DEFAULT_FILE_STORAGE = 'app.s3settings.MediaS3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAIUGQ3GSU43FKH3LQ'
+AWS_SECRET_ACCESS_KEY = 'pXiR/SNGpWrSVEj2aJdZdFRMeJ5+T+SQB5DKFK8s'
+AWS_STORAGE_BUCKET_NAME = 'nandotorres'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
