@@ -6,4 +6,3 @@ local_settings.py
 .DS_Store
 app/media/videos/*
 *.db
-app/assets/CACHE/*
