@@ -37,8 +37,7 @@ STATIC_URL = APP_URL + 'assets/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
 STATICFILES_DIRS = (
@@ -46,14 +45,6 @@ STATICFILES_DIRS = (
     ("img", APP_ROOT + "/assets/img"),
     ("js", APP_ROOT + "/assets/js"),
 )
-
-COMPRESS_STORAGE = "staticfiles.storage.StaticFileStorage"
-
-COMPRESS_URL = STATIC_URL
-
-COMPRESS_ROOT = STATIC_ROOT
-
-COMPRESS_ENABLED = True
 
 SECRET_KEY = '+-3xl4dj)r&amp;wf_#!9=dp1i2553a!hztx1yyi10v)n(di1hv-sd'
 
@@ -89,7 +80,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'compressor',
     'django.contrib.staticfiles',
     'app'
     # Uncomment the next line to enable the admin:
