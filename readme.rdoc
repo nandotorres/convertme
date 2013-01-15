@@ -26,4 +26,8 @@ O desafio consiste em:
 - GitHub
 - Twitter Bootstrap para decoração da UI (HTML5 + CSS)
 - Google fonts
-- Flowplayer para exibir o vídeo convertido
+- Boto e Django Storages para manipulação do S3
+
+== Observações:
+
+- Versão funcional foi apresentada no dia 14 pela manhã. Após essa data fiz (e devo continuar fazendo) melhorias e avanços na interface e nos recursos para desenvolver habilidades no framework Django e linguagem Python pois é meu primeiro contato com a tecnologia. Essas melhorias podem ser desconsideradas.
