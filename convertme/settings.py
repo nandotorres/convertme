@@ -93,6 +93,9 @@ DEFAULT_FILE_STORAGE = 'app.s3settings.MediaS3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAIUGQ3GSU43FKH3LQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'nandotorres'
+AWS_MEDIA_DIR = 'videos/'
+AWS_MEDIA_INPUT = 'inputs/'
+AWS_URL = 'http://nandotorres.s3.amazonaws.com/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

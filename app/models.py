@@ -5,7 +5,7 @@ from zencoder import Zencoder
 import boto
 
 class Video(models.Model):
-    file = models.FileField(upload_to='inputs/')
+    file = models.FileField(upload_to= settings.AWS_MEDIA_INPUT)
     formato = models.CharField(max_length = 5, default = 'webm')
     job_id = models.IntegerField(default=0, null=True, blank=True)
     job_done = models.BooleanField(default=False)
@@ -18,7 +18,7 @@ class Video(models.Model):
                                  settings.AWS_SECRET_ACCESS_KEY)
              bucket = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
              k = boto.s3.key.Key(bucket)
-             k.key = '/videos/' + self.file.name
+             k.key = "/%s%s" % (settings.AWS_MEDIA_DIR, self.file.name)
              k.set_acl('public-read')
     
     """
@@ -28,13 +28,13 @@ class Video(models.Model):
         zen = Zencoder("7f188a0403a4caac59d8a0080015cae9", api_version = "v2", as_xml = False, test = True)
 
         output = {}
-        output["url"] = "s3://nandotorres/%s.%s" % (self.file.name.split("/")[-1], self.formato)
-        output["base_url"] = "s3://nandotorres/"
+        output["url"] = "s3://%s/%s.%s" % (settings.AWS_STORAGE_BUCKET_NAME, self.file.name.split("/")[-1], self.formato)
+        output["base_url"] = "s3://%s/" % settings.AWS_STORAGE_BUCKET_NAME
         output["format"]   = self.formato
         output["public"] = 1
         output["notifications"] = [{ "url": ("%s/notify/%s" % (settings.SITE_URL, self.id)) }]
     
-        job = zen.job.create("s3://nandotorres/videos/" + self.file.name, output)
+        job = zen.job.create("s3://%s/%s%s" % (settings.AWS_STORAGE_BUCKET_NAME, settings.AWS_MEDIA_DIR, self.file.name), output)
     
         return job
         
