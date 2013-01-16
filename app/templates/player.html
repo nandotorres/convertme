@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}		
-		   <h1><span class="marrom">convert</span><span class="verde">me</span></h1>
+		   <h1><a href="/"><span class="marrom">convert</span><span class="verde">me</span></a></h1>
 		   <p class="banner">Yep! O vídeo foi convertido. Clique em play para vê-lo.</p>
 {% endblock %}	
 
@@ -9,7 +9,7 @@
 			<div class="form">
 			{% if video.job_done %}   
 
-				<video id="sampleMovie" width="420" height="360" preload controls>
+				<video id="sampleMovie" preload controls>
 					<source src="https://s3-sa-east-1.amazonaws.com/nandotorres/{{ nome_arquivo }}" />
 				</video>
 
@@ -22,7 +22,11 @@
 			{% endif %}
 
 			<div class="alert alert-info" id="banner-arquivo-original">
-			  Arquivo original: <b><a href="{{ MEDIA_URL }}{{ video.file.name }}">{{ MEDIA_URL }}{{ video.file.name }}</a></b>
+			  Arquivo original: <br /><b><a href="http://nandotorres.s3.amazonaws.com/videos/{{ video.file.name }}">http://nandotorres.s3.amazonaws.com/videos/{{ video.file.name }}</a></b>
+			</div>
+			
+			<div class="alert alert-success" id="banner-arquivo-convertido">
+			  Arquivo convertido: <br /><b><a href="https://s3-sa-east-1.amazonaws.com/nandotorres/{{ nome_arquivo }}">https://s3-sa-east-1.amazonaws.com/nandotorres/{{ nome_arquivo }}</a></b>
 			</div>
 
 		  </div>
